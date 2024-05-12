@@ -62,6 +62,7 @@ class Proceso implements Runnable {
     public String toString() {
         return "P" + id;
     }    
+    
 }
 
 class AdministradorRecursos {
@@ -121,7 +122,7 @@ class AdministradorRecursos {
             lock.unlock();
         }
     }
-    
+
     public static void main(String[] args) {
         AdministradorRecursos admin = new AdministradorRecursos();
         Proceso proceso = new Proceso(admin);
