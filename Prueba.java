@@ -111,5 +111,6 @@ class AdministradorRecursos {
                 break;
             }
         }
+        leer.close();
     }
 }
