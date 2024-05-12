@@ -36,6 +36,18 @@ class Proceso implements Runnable {
     public String toString() {
         return "P" + id;
     }    
+    public void printImportantInfo() {
+        Proceso[] procesos = new Proceso[5]; // Assuming you have an array of Proceso objects
+    
+        for (int i = 0; i < procesos.length; i++) {
+            Proceso proceso = procesos[i];
+            System.out.printf("No. Proceso: %d\n", proceso.id);
+            System.out.printf("Prioridad: %d\n", proceso.prioridad);
+            System.out.printf("Cantidad RAM: %d\n", proceso.cantidadRAM);
+            System.out.printf("Tiempo de Ejecución: %d\n", proceso.tiempoEjecucion);
+        }
+    }
+    
 }
 
 class AdministradorRecursos {
@@ -93,7 +105,7 @@ class AdministradorRecursos {
             lock.unlock();
         }
     }
-    
+
     public static void main(String[] args) {
         AdministradorRecursos admin = new AdministradorRecursos();
         Scanner leer = new Scanner(System.in);
