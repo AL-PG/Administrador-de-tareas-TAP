@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.Scanner;
 
 class Proceso implements Runnable {
     private static final Random rand = new Random();
@@ -94,6 +95,20 @@ class AdministradorRecursos {
 
     public static void main(String[] args) {
         AdministradorRecursos admin = new AdministradorRecursos();
-        admin.generarProcesos(new Random().nextInt(19) + 2);
+        Scanner leer = new Scanner(System.in);
+        
+        while(true){
+            System.out.println("Numero de Procesos: ");
+            int procesos = leer.nextInt();
+            
+            if(procesos < 2){
+                System.out.println("El numero de procesos debe ser mayor a 2");
+            } else if(procesos > 20) {
+                System.out.println("El numero debe ser menor a 20");
+            } else {
+                admin.generarProcesos(procesos);
+                break;
+            }
+        }
     }
 }
