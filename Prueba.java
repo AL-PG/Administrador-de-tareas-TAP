@@ -34,7 +34,7 @@ class Proceso implements Runnable {
 
     public String toString() {
         return "P" + id;
-    }
+    }    
 }
 
 class AdministradorRecursos {
@@ -92,7 +92,7 @@ class AdministradorRecursos {
             lock.unlock();
         }
     }
-
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int w;
