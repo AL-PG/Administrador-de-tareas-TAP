@@ -99,7 +99,7 @@ class AdministradorRecursos {
         while (true) {
             System.out.println("Cantidad de procesos a ejecutar: ");
             w = sc.nextInt();
-            if (w< 2 || w > 20) {
+            if (w < 2 || w > 20) {
                 System.out.println("Inténtelo de nuevo. El número de procesos debe estar entre 2 y 20. ");            
             }
             else{
