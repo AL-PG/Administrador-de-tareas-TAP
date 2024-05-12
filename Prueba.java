@@ -42,8 +42,9 @@ class AdministradorRecursos {
     private int totalProcesadores = 16;
     private int totalRAM = 100;
     private ReentrantLock lock = new ReentrantLock();
-
+    Scanner sc = new Scanner(System.in);
     public void generarProcesos(int n) {
+        
         Thread[] threads = new Thread[n];
         System.out.printf("[DEBUG] - MainThread : Se crearon %d hilos procesos\n", n);
         for (int i = 0; i < n; i++) {
