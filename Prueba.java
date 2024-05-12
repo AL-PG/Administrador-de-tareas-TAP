@@ -10,6 +10,7 @@ class Proceso implements Runnable {
     int numProcesadores;
     int cantidadRAM;
     int tiempoEjecucion;
+    String [][] tabla;
     AdministradorRecursos admin;
 
     public Proceso(AdministradorRecursos admin) {
@@ -19,6 +20,8 @@ class Proceso implements Runnable {
         this.cantidadRAM = 10 * (1 + rand.nextInt(5));
         this.tiempoEjecucion = 1 + rand.nextInt(3);
         this.admin = admin;
+        this.tabla = new String[20][8];
+        guardardatos();
     }
 
     @Override
@@ -33,6 +36,29 @@ class Proceso implements Runnable {
         admin.liberarRecursos(this);
     }
 
+    public void guardardatos(){
+        for (int i = 0; i < 20; i++) {
+            tabla[i][0] = String.valueOf(id);
+            tabla[i][1] = toString();
+            tabla[i][2] = String.valueOf(prioridad);
+            tabla[i][3] = String.valueOf(numProcesadores);
+            tabla[i][4] = String.valueOf(cantidadRAM);
+            tabla[i][5] = String.valueOf(tiempoEjecucion);
+            tabla[i][6] = "%" + numProcesadores/16;
+            tabla[i][7] = "%" + cantidadRAM/100;
+        }
+    }
+
+    public void dibujarTabla(){
+
+        for (int i = 0; i < tabla.length; i++) {
+            for (int j = 0; j < tabla[i].length; j++) {
+                System.out.print(tabla[i][j] + " "); 
+            }
+            System.out.println();
+        }
+    }
+
     public String toString() {
         return "P" + id;
     }    
@@ -43,7 +69,8 @@ class AdministradorRecursos {
     private int totalRAM = 100;
     private ReentrantLock lock = new ReentrantLock();
     Scanner sc = new Scanner(System.in);
-    public void generarProcesos(int n) {
+    
+    public void generarProcesos(int n, Proceso proceso) {
         
         Thread[] threads = new Thread[n];
         System.out.printf("[DEBUG] - MainThread : Se crearon %d hilos procesos\n", n);
@@ -58,6 +85,7 @@ class AdministradorRecursos {
                 e.printStackTrace();
             }
         }
+        proceso.dibujarTabla();
     }
 
     public void asignarRecursos(Proceso proceso) {
@@ -96,6 +124,7 @@ class AdministradorRecursos {
     
     public static void main(String[] args) {
         AdministradorRecursos admin = new AdministradorRecursos();
+        Proceso proceso = new Proceso(admin);
         Scanner leer = new Scanner(System.in);
         
         while(true){
@@ -107,7 +136,7 @@ class AdministradorRecursos {
             } else if(procesos > 20) {
                 System.out.println("El numero debe ser menor a 20");
             } else {
-                admin.generarProcesos(procesos);
+                admin.generarProcesos(procesos,proceso);
                 break;
             }
         }
