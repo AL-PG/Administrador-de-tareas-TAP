@@ -36,7 +36,6 @@ class Proceso implements Runnable, Comparable<Proceso> {
             e.printStackTrace();
         }
         admin.liberarRecursos(this);
-        admin.agregarProcesoTerminado(this);
     }
 
     @Override

@@ -36,6 +36,7 @@ class AdministradorRecursos {
         while (!colaPrioridad.isEmpty()) {
             Proceso proceso = colaPrioridad.poll();
             new Thread(proceso).start();
+            procesosTerminados.add(proceso);
         }
     }
 
@@ -68,10 +69,6 @@ class AdministradorRecursos {
         } finally {
             lock.unlock();
         }
-    }
-
-    public void agregarProcesoTerminado(Proceso proceso) {
-        procesosTerminados.add(proceso);
     }
 
     public void imprimirReporte() {
